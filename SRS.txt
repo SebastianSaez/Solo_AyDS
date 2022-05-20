@@ -1,0 +1,71 @@
+Software Requirements Specification
+
+“LowMemory”
+
+Introduction:
+
+LowMemory va a ser un juego estilo preguntado. Donde el usuario dispondrá de preguntas de todo tipo de categoría, basado en la siguiente categoría.
+-	Deporte
+-	Entretenimiento
+-	Geografía
+-	Música
+
+
+Donde el usuario por cada pregunta recibirá puntos, también va a poder solicitar difícil del juego que estará basado en:
+- Fácil (x1)
+- Normal (x2)
+- Imposible (x5)
+
+
+La dificultad va a tener un bono de puntaje adicional por su esfuerzo, juega con tus amigos y califica que tan bueno eres con los diferentes medios, ya que dependiendo de tu puntaje final te vamos a calificar según tu inteligencia.
+-	Esclavo
+-	Novato
+-	Normal
+-	Inteligente
+-	Dios
+
+
+Metodología del juego:
+-	Si el usuario acierta la pregunta, recibirá 1 punto
+-	Si consigue racha de 3 preguntas correctas, recibirá un bono en su siguiente pregunta.
+-	El usuario dispondrá de 3 vidas o preguntas incorrectas.
+-	Multiplicara el valor del acierto dependiendo de la dificultad x2 y x5
+-	Categoría
+	•	5 P = Esclavo
+	•	10 P = Novato
+	•	15 P = Normal
+	•	25 P = Inteligente
+	•	50 P = Dios
+-	El juego se podrá jugar de 1 o 2 personas. (Si es posible)
+
+
+Request:
+
+Request  functional:
+
+Usuario:
+
+•	Registrarse como Usuario (Nombre, Contraseña)
+•	Cambio de contraseña
+•	Iniciar sesión
+•	Cerrar sesión
+•	Visualizar Puntaje
+•	Visualizar Racha
+•	Visualizar Categoría de Memoria
+
+Administración:
+
+•	Registrar al usuario
+•	Iniciar Sesión como Administración
+•	Cerrar sesión
+•	Banear Usuario
+•	Visualizar miembros registrados
+•	Ingresar preguntas
+
+Non-Fuctional requirement:
+
+•	No se podrá registrar con el mismo nombre de usuario
+•	No se permitirá Ingresar contraseña, sin ninguna mayúscula.
+
+
+
