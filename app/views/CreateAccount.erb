@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Crear Cuenta</title>
+	<style type="text/css">
+		:root{
+			--colorTextos: #49454567;
+		}
+		*,
+		::before,
+		::after{
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+		body{
+			background: black;
+			height: 650px;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+		h1{
+			text-align: center;
+			font-weight: 700;
+		}
+		form{
+			background: #fff;
+			padding: 40px 0 ;
+			box-shadow: 0 0 6px 0 rgba(255, 255, 255, 0.8);
+			border-radius: 10px;
+		}
+		.form{
+			width: 100%;
+			margin: auto;
+		}
+		form .grupo{
+			position: relative;
+			margin: 45px;
+		}
+
+		input{
+			background: none;
+			color: #c6c6c6;
+			font-size: 18px;
+			padding: 10 px 10px 10px 5px;
+			width: 100%;
+			border: none;
+			border-bottom: 1px solid var(--colorTextos);
+		}
+		input:focus{
+			outline: none;
+			color:  #5e5d5d;
+		}
+		label{
+			font-size: 16px;
+			position: absolute;
+			color: black;
+			left: 5px;
+			bottom: 25px;
+			transition: 0.5 ease-in-out all;
+			pointer-events: none;
+		}
+		input:focus~label,
+		input: valid~label{
+			top: -14px;
+			font-size: 12px;
+			color: #2196f3;
+		}
+		.barra{
+			content: "";
+			height: 2px;
+			width: 0%;
+			bottom: 0;
+			position: absolute;
+			background: linear-gradient(to right,#B06AB3,#4568DC);
+			transition: 0.3 ease width;
+			left: 0;
+		}
+		button{
+			background: black;
+			font-family: serif;
+			border: none;
+			display: block;
+			width: 80%;
+			margin: 10px auto;
+			color: #fff;
+			height: 40px;
+			font-size: 16px;
+			cursor: pointer;
+		}
+
+
+	</style>
+</head>
+<body>
+	<form action="http://localhost:4567/signup" method="POST" id="form">
+		<div class="form">
+			<h1>Registro</h1>
+			<div class="grupo">
+				<input type="username" name="username" id="name" required><span class="barra"></span>
+				<label>Nombre</label>
+			</div>
+			<div class="grupo">
+				<input type="email" name="email" id="name" required><span></span>
+				<label>Email</label>
+			</div>
+			<div class="grupo">
+				<input type="password" name="password" id="name" required><span></span>
+				<label>Password</label>
+			</div>
+			<button type="submit">Registrarse</button>
+		</div>
+	</form>
+</body>
+</html>

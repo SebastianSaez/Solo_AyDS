@@ -1,7 +1,9 @@
+require 'rake'
 require "sinatra/activerecord/rake"
 
+
 namespace :db do
-    task :load_config do
-      require "./app/controllers/server"
-    end
+  task :load_config do
+    require "./app/controllers/server"
   end
+end

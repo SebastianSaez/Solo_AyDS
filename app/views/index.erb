@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <title>Beginner-Luck</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Days+One&display=swap" rel="stylesheet"> 
+
+    <style>
+        body{
+            background-color:white;
+            margin: 0;
+        }
+
+        header {
+            background-color:#ed213a;
+            height: 100px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 30px;
+        }
+
+        h1 {
+
+            font-family: 'Days One', sans-serif;
+            color:white;
+            text-align: center;
+            font-size: 400%;
+        }
+
+        a {
+            color:white;
+            font-family: Arial, Helvetica, sans-serif;
+            text-decoration: none;
+            font-weight:bold;
+        }
+
+        button {
+            padding: 15px 25px;
+            border: unset;
+            border-radius: 15px;
+            color: #212121;
+            z-index: 1;
+            background: #ed213a;
+            position: relative;
+            font-weight: 1000;
+            font-size: 17px;
+            -webkit-box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
+            box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
+            transition: all 250ms;
+            overflow: hidden;
+            
+        }
+
+        .button::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 0;
+            border-radius: 15px;
+            background-color: #212121;
+            z-index: -1;
+            -webkit-box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
+            box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
+            transition: all 250ms
+        }
+
+        .button:hover {
+            color: #e8e8e8;
+        }
+
+        .button:hover::before {
+            width: 100%;
+        }
+
+        .spinner {
+            height: 500px;
+            width: max-content;
+            font-size: 30px;
+            font-weight: 600;
+            font-family:'Days One', sans-serif;
+            letter-spacing: 1em;
+            color: #000000;
+            filter: drop-shadow(0 0 10px);
+            display: flex;
+            justify-content: center;
+            align-items:center;
+            margin:auto;
+
+        }
+
+        .spinner span {
+            animation: loading6454 1.75s ease infinite;
+        }
+
+        .spinner span:nth-child(2) {
+            animation-delay: 0.25s;
+        }
+
+        .spinner span:nth-child(3) {
+            animation-delay: 0.5s;
+        }
+
+        .spinner span:nth-child(4) {
+            animation-delay: 0.75s;
+        }
+
+        .spinner span:nth-child(5) {
+            animation-delay: 1s;
+        }
+
+        .spinner span:nth-child(6) {
+            animation-delay: 1.25s;
+        }
+
+        .spinner span:nth-child(7) {
+            animation-delay: 1.5s;
+        }
+
+        @keyframes loading6454 {
+            0%, 100% {
+            transform: translateY(0);
+            }
+
+            50% {
+            transform: translateY(-10px);
+            }
+        }
+
+    </style>
+
+</head>
+<body>
+
+    <header>
+        
+        <h1>Beginner-Luck</h1>
+
+        
+        
+        <nav>
+            <button class="button"><a href="http://localhost:4567/signup">Sign up</a></button>
+            <button class="button"><a href="http://localhost:4567/login">Login</a></button>
+        </nav>
+        
+    </header>
+    
+    <div class="spinner">
+        <span>L</span>
+        <span>O</span>
+        <span>A</span>
+        <span>D</span>
+        <span>I</span>
+        <span>N</span>
+        <span>G</span>
+      </div>
+    
+    
+    
+
+</body>
+</html>
+
+
+<!-- <p><a href="http://localhost:4567/signup">Sign up!</a></p> -->
+<!-- <p><a href="http://localhost:4567/login">Log in!</a></p> -->

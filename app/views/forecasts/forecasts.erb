@@ -1,0 +1,9 @@
+<h1>Your Forecasts</h1>
+
+<h2> Your Points: <%@player.points%> </h2>
+
+<% @player.forecasts.each do |f| %>
+  <p><%= f.home_goals %> - <%= f.visitor_goals %> - <%= f.match_id %> </p>
+<% end %>
+
+<p><a href="/landingpage">Sign up</a></p>

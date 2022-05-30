@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/sinatra/sinatra.git
-  revision: b4f61f59cf8f938db261a6561a69ca61d01e8581
+  revision: 029e27dfb63dd0084a56660030a52271db23a1fe
   specs:
     rack-protection (3.0.0)
       rack
@@ -19,12 +19,12 @@ GIT
 GEM
   remote: https://rubygems.org/
   specs:
-    activemodel (7.0.2.4)
-      activesupport (= 7.0.2.4)
-    activerecord (7.0.2.4)
-      activemodel (= 7.0.2.4)
-      activesupport (= 7.0.2.4)
-    activesupport (7.0.2.4)
+    activemodel (7.0.3)
+      activesupport (= 7.0.3)
+    activerecord (7.0.3)
+      activemodel (= 7.0.3)
+      activesupport (= 7.0.3)
+    activesupport (7.0.3)
       concurrent-ruby (~> 1.0, >= 1.0.2)
       i18n (>= 1.6, < 2)
       minitest (>= 5.1)
@@ -38,7 +38,7 @@ GEM
     multi_json (1.15.0)
     mustermann (1.1.1)
       ruby2_keywords (~> 0.0.1)
-    rack (2.2.3)
+    rack (2.2.3.1)
     rake (13.0.6)
     rspec (3.11.0)
       rspec-core (~> 3.11.0)
@@ -64,6 +64,7 @@ GEM
 
 PLATFORMS
   ruby
+  x64-mingw32
 
 DEPENDENCIES
   bcrypt
@@ -73,7 +74,7 @@ DEPENDENCIES
   sinatra!
   sinatra-activerecord
   sinatra-contrib!
-  sqlite3
+  sqlite3 (~> 1.4.0)
 
 RUBY VERSION
    ruby 2.7.5p203

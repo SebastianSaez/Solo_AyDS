@@ -1,0 +1,13 @@
+<h1>Create Forecast</h1>
+
+  <% if @error %>
+      <div class="error">Login failed.</div>
+  <% end %>
+
+  <form action="/play" method="post">
+      Home Goals: <input type="text" name="home_goals" placeholder="Home Goals" />
+      Visitor Goals: <input type="text" name="visitor_goals" placeholder="Visitor Goals" />
+      Match: <input type="text" name="match_id" placeholder="Match" />
+
+      <input type="submit" value="Create Forecast" />
+  </form>

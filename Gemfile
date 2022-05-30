@@ -7,14 +7,14 @@ github 'sinatra/sinatra' do
   gem 'sinatra-contrib'
 end
 
-gem 'multi_json'
-# Gemfile (add the following gems)
-gem 'sinatra-activerecord'
-gem 'sqlite3'
-gem 'rake'
-
 group :test do
+
   gem 'rspec'
+
 end
 
+gem 'multi_json'
+gem 'sinatra-activerecord'
+gem 'sqlite3' ,'~> 1.4.0'
+gem 'rake'
 gem 'bcrypt'
