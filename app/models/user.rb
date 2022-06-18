@@ -3,15 +3,14 @@ class User < ActiveRecord::Base
 
     has_many :forecasts
     has_secure_password
-    validates :username, presence: true, uniqueness: true
+    validates :username,:email, presence: true, uniqueness: true
+    before_create do
+        self.point = 0
+        self.streak = 0
+    end
 end
 
 
 class Player < User
-    has_many :championbets
-    has_many :bets
-    has_many :scores
-end
-
-class Admin < User
+    
 end

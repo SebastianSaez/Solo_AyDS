@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Usuario</title>
+  <title>Admin</title>
   <style type="text/css">
       body{
           background-color: #1450C0;
@@ -31,7 +31,7 @@
 
         }
         #menu ul li a:hover{
-          background-color: #0356F3;
+          background-color: #0356F3 ;
         }
 
         .item-r{
@@ -55,6 +55,48 @@
           margin-right: 30px;
         }
 
+        #main-container{
+          width: 600px;
+          margin: 150px auto;
+        }
+        table{
+          width: 100%;
+          background-color: white;
+          text-align: left;
+          border-collapse: collapse;
+        }
+        th,td{
+          border: solid 5px black ;
+          padding: 20px;
+        }
+        thead{
+          border-bottom: solid 10px #blue;
+          color: black;
+        }
+        tr{
+          background-color: #ddd;
+
+        }
+        h1{
+          margin: 50px auto;
+          text-align: center;
+        }
+        .principal{
+          text-align: center;
+        }
+        .principal tr{
+          background-color: #2E2E2E;
+          font-size: 25px;
+          color: green;
+        }
+        .secundaria a{
+          text-decoration: none;
+          color: black;
+        }
+
+        
+
+
   </style>
 </head>
 <body>
@@ -72,5 +114,30 @@
       <li class="item-r"><a href="http://localhost:4567/">Logout</a></li>
     </ul>
   </div>
+    <main>
+    <% if (@tournament != nil)%>
+    <h1 for='Team'>Torneo "<%=@tournament.first.tournament.name%>"</h1>
+    <div id="main-container">
+      <table class="principal">
+        <thead>
+          <tr>
+            <th>Partidos</th>
+          </tr>
+        </thead>
+        <% @tournament.each do |algo| %>
+        <table class="secundaria">
+          <tr class="titulo">
+            <th><a href="http://localhost:4567/login/game?id_match=<%= algo.match.id %>" class="viendo2"><%="#{algo.match.local.name} vs #{algo.match.visitor.name}"%></a></th>
+          </tr> 
+        </table>
+          <% end %>
+      </table>
+    </div>
+    <% else %>
+      <div class="success"><%= flash[:error]%></div>
+    <% end %>
+  </main>
 </body>
 </html>
+
+
