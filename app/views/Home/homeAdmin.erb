@@ -250,7 +250,7 @@
         <table class="resultado3">
                 <tr class="name_partido"><th >( <%="#{algo.local.name}"%> - <%="#{algo.visitor.name}"%> )</th></tr> 
                 <% @forecast.each do |ver| %>
-                <%if (ver.match.id == algo.id) %>
+                <%if (ver.match.id == algo.id && ver.win != nil) %>
                 <tr class="resultado"><th class="resultado1"><%="#{ver.local_goal}"%> - <%="#{ver.visitor_goal}"%></th></tr>
                 <% end %>
                 <% end %>

@@ -60,14 +60,16 @@
           margin: 150px auto;
         }
         table{
+          margin-bottom: 10px;
           width: 100%;
           background-color: white;
           text-align: left;
           border-collapse: collapse;
         }
         th,td{
-          border: solid 1px black;
+          border: solid 2px #0231F9 ;
           padding: 20px;
+          text-align: center;
         }
         thead{
           background-color: black;
@@ -102,7 +104,12 @@
           background-color: white;
         }
         .Perdedor{
-          color: red;
+          color: #F91717  ;
+          background-color: #A0A0A0 ;
+        }
+        .sinresultado{
+          background-color: white;
+          color: black;
         }
   </style>
 </head>
@@ -110,12 +117,12 @@
   <div id="user">
     <li class="item-s1">Usuario: <%= @current_user.username %></li>
     <li class="item-s2">Puntos: <%= @current_user.point %></li>
+    <li class="item-s2">Racha: <%= @current_user.streak %></li>
   </div>
   </ul>
   <div id="menu">
     <ul>
       <li><a href="http://localhost:4567/login/home">Home</a></li>
-      <li><a href="http://localhost:4567/login/home/play">Play</a></li>
       <li><a href="http://localhost:4567/login/ranking">Ranking</a></li>
       <li><a href="http://localhost:4567/login/history">History</a></li>
       <li class="item-r"><a href="http://localhost:4567/">Logout</a></li>
@@ -125,17 +132,21 @@
     <h1 for='Team'>Tus prediciones</h1>
     <div id="main-container">
       <table>
+        <tr><th>Verde = Ganador - Rojo = perdedor - Blanco = Sin resultado</th></tr>
+      </table>
+      <table>
         <%if @fore != nil %>
           <% @fore.each do |fore| %>
             <%if (fore.result == fore.win) %>
-              <tr class="Ganador"><th><%= "#{fore.match.local.name.upcase!} " %></th><th><%= "#{fore.match.visitor.name.upcase!} " %></th></tr>
+              <tr class="Ganador"><th><%= "#{fore.match.local.name} - #{fore.match.visitor.name}" %> 😊</th></tr>
             <% else %>
-              <tr class="Perdedor"><th><%= "#{fore.match.local.name.upcase!} " %></th><th><%= "#{fore.match.visitor.name.upcase!} " %></th></tr>
+              <%if (fore.win == nil) %>
+                <tr class="sinresultado"><th><%= "#{fore.match.local.name} - #{fore.match.visitor.name}" %> 🤔</th></tr>
+              <% else %>
+                <tr class="Perdedor"><th><%= "#{fore.match.local.name} - #{fore.match.visitor.name}" %> 😢</th></tr>
+              <% end %>
             <% end %>
           <% end %>  
-        <%else%>
-          <p><%= @flash[:error] = "nada" %></p>
-
         <%end%>
       </table>
     </div>

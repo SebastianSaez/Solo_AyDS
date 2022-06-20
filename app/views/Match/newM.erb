@@ -81,23 +81,37 @@
 
 
 
-        .login-box{
+      .login-box{
       width: 320px;
       height: 350px;
       background: #E8E8E8 ;
       color: #000;
       top: 50%;
-      left: 50%;
+      left: 25%;
       position: absolute;
       transform: translate(-50%,-50%);
       box-sizing: border-box;
       padding: 20px 30px;
     }
+
+    .login-box2{
+      width: 320px;
+      height: 350px;
+      background: #E8E8E8 ;
+      color: #000;
+      top: 50%;
+      left: 75%;
+      position: absolute;
+      transform: translate(-50%,-50%);
+      box-sizing: border-box;
+      padding: 20px 30px;
+    }
+
     .texto{
       margin: 0;
       padding: 0 0 20px;
       text-align: center;
-      font-size: 30px;
+      font-size: 20px;
     }
     .login-box .texto {
       margin: 0;
@@ -116,16 +130,6 @@
     .login-box input {
       width: 100%;
       margin-bottom: 25px;
-    }
-    .login-box input[type="text"],
-    .login-box input[type="password"],{
-      border: none;
-      border-bottom: 1px solid #fff;
-      background: transparent;
-      outline: none;
-      height: 40px;
-      color: #fff;
-      font-size: 16px;
     }
     .login-box input[type="submit"] {
       border: none;
@@ -147,7 +151,7 @@
     }
 
 
-    header {
+        header {
             background-color:#1450C0;
             height: 100px;
             display: flex;
@@ -266,24 +270,38 @@
   <%end %>
   <main>
     <div class="login-box">
-    <img src="" alt="">
-    <h1 class="texto">Partido a crear</h1>
-    <form action="http://localhost:4567/login/match" method="POST">
-      <label for='Team'>Nombre del Equipo visitante:</label>
-      <select id='team1' name='local' type="integer">
-        <% @teams.each do |team| %>
-        <%= "<option>#{team.name}</option>" %>
-        <% end %>
-      </select>
-      <br><label for='Team'>Nombre del Equipo Local:</label>
-      <select id='team2' name='visitor' type="integer">
-        <% @teams.each do |team| %>
-        <%= "<option>#{team.name}</option>" %>
-        <% end %>
-      </select>
-      <button class="boton1" type="submit">Agregar</button>
-    </form>
-  </div>
-  </main>
+      <img src="" alt="">
+      <h1 class="texto">Crear Partido</h1>
+      <form action="http://localhost:4567/login/match" method="POST">
+        <label for='Team'>Nombre del Equipo visitante:</label>
+        <select id='team1' name='local' type="integer">
+          <% @teams.each do |team| %>
+          <%= "<option>#{team.name}</option>" %>
+          <% end %>
+        </select>
+        <br><label for='Team'>Nombre del Equipo Local:</label>
+        <select id='team2' name='visitor' type="integer">
+          <% @teams.each do |team| %>
+          <%= "<option>#{team.name}</option>" %>
+          <% end %>
+        </select>
+        <button class="boton1" type="submit">Agregar</button>
+      </form>
+    </div>
+
+    <div class="login-box2">
+      <img src="" alt="">
+      <h1 class="texto">Borrar Partido</h1>
+      <form action="http://localhost:4567/login/deletematch" method="POST">
+        <label for='Team'>Partidos</label>
+        <select id='team1' name='match' type="integer">
+          <% @match.each do |match| %>
+          <option value="<%= "#{match.id} " %>"><%= "#{match.local.name} - #{match.visitor.name} " %></option>
+          <% end %>
+        </select>
+        <button class="boton1" type="submit">Eliminar</button>
+      </form>
+    </div>
+ </main>
 </body>
 </html>

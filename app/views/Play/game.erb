@@ -91,18 +91,32 @@
 
 
 
-        .login-box{
+      .login-box{
       width: 320px;
       height: 350px;
       background: #E8E8E8 ;
       color: #000;
       top: 50%;
-      left: 50%;
+      left: 25%;
       position: absolute;
       transform: translate(-50%,-50%);
       box-sizing: border-box;
       padding: 20px 30px;
     }
+
+    .login-box2{
+      width: 320px;
+      height: 350px;
+      background: #E8E8E8 ;
+      color: #000;
+      top: 50%;
+      left: 75%;
+      position: absolute;
+      transform: translate(-50%,-50%);
+      box-sizing: border-box;
+      padding: 20px 30px;
+    }
+
     .texto{
       margin: 0;
       padding: 0 0 20px;
@@ -177,6 +191,7 @@
       
 
         button {
+            left: 25%;
             padding: 15px 25px;
             border: unset;
             border-radius: 15px;
@@ -268,9 +283,9 @@
       <div class="success"><%= flash[:success]%></div>
   <%end %>
     <main>
-      <div class="login-box">
+    <div class="login-box">
           <img src="" alt="">
-          <h1 class="texto">Cargar Resultado: <br> (<%= @team.local.name %> Vs <%= @team.visitor.name %>)</h1>
+          <h1 class="texto">Cargar Resultado: <br> (<%= @team.local.name %> - <%= @team.visitor.name %>)</h1>
           <form action="http://localhost:4567/login/adminresult?id_match=<%= @team.id %>&id_tournament=<%= @tournament.id %>" method="POST">
             <table>
                 <div class="grupo">
@@ -282,6 +297,16 @@
                    <input type="username" name="visitor_goal" id="name" placeholder="Goles de <%= @team.visitor.name %>"required><span class="barra"></span>
                 </div>
                 <button class="boton1" type="submit">Aceptar</button>
+            </table>
+          </form>
+      </div>
+
+      <div class="login-box2">
+          <img src="" alt="">
+          <h1 class="texto">Borrar Partido: <br> (<%= @team.local.name %> - <%= @team.visitor.name %>)</h1>
+          <form action="http://localhost:4567/login/borrarpartido?id_match=<%= @team.id %>&id_tournament=<%= @tournament.id %>" method="POST">
+            <table>
+                <button class="boton1" type="submit">Borrar</button>
             </table>
           </form>
       </div>

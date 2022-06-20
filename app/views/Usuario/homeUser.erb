@@ -80,13 +80,6 @@
           margin: 50px auto;
           text-align: center;
         }
-
-
-
-
-
-
-
         body{
           background-color: #1450C0;
           padding: 0;
@@ -210,12 +203,12 @@
   <div id="user">
     <li class="item-s1">Usuario: <%= @current_user.username %></li>
     <li class="item-s2">Puntos: <%= @current_user.point %></li>
+    <li class="item-s2">Racha: <%= @current_user.streak %></li>
   </div>
   </ul>
   <div id="menu">
     <ul>
       <li><a href="http://localhost:4567/login/home">Home</a></li>
-      <li><a href="http://localhost:4567/login/home/play">Play</a></li>
       <li><a href="http://localhost:4567/login/ranking">Ranking</a></li>
       <li><a href="http://localhost:4567/login/history">History</a></li>
       <li class="item-r"><a href="http://localhost:4567/">Logout</a></li>
@@ -248,7 +241,7 @@
         <table class="resultado3">
                 <tr class="name_partido"><th >( <%="#{algo.local.name}"%> Vs <%="#{algo.visitor.name}"%> )</th></tr> 
                 <% @forecast.each do |ver| %>
-                <%if (ver.match.id == algo.id) %>
+                <%if (ver.match.id == algo.id && ver.win != nil) %>
                 <tr class="resultado"><th class="resultado1"><%="#{ver.local_goal}"%> - <%="#{ver.visitor_goal}"%></th></tr>
                 <% end %>
                 <% end %>

@@ -58,18 +58,30 @@ class App < Sinatra::Application
     forecast = Forecast.all
     if (forecast == [] ) then 
       flash[:error] = "No hay ningun pronostico"
-      redirect "/login/home"
+      erb:'Play/game'
     else
       erb:'Play/game'
     end
-    #  if (@tournament == nil)then 
-    #     erb:'Admin/home'
-    #  else
-    #    erb:'Play/game'
-    #  end
    end
 
-    post '/login/adminresult' do
+  post '/login/borrarpartido' do
+    partidoM = Match.find_by(id:params[:id_match])
+    partido = Matchtournament.find_by(match:partidoM)
+    if (partido != nil ) then 
+      pronostico = Forecast.where(match:partidoM)
+      pronostico.each do |fore|
+        Forecast.destroy(fore.id)
+      end
+      Matchtournament.destroy(partido.id)
+      flash[:success] = "Se borro partido"
+      redirect "/login/home"
+    else
+      flash[:error] = "No se puede borrar"
+      redirect "/login/home"
+    end
+  end
+
+  post '/login/adminresult' do
       forecast = Forecast.where(match:params[:id_match])
       if (forecast != [] )then
         forecast.each do |fore|
@@ -114,10 +126,25 @@ class App < Sinatra::Application
         flash[:success] = "Se cargo resultado del partido"
         redirect "/login/home"
       else
-        flash[:error] = "No hay ningun pronostico.."
+        forecast = Forecast.new
+        forecast.user = User.find_by_id(session[:user_id])
+        forecast.match = Match.find_by_id(params[:id_match])
+        forecast.local_goal = params[:local_goal]
+        forecast.visitor_goal = params[:visitor_goal]
+        if (params[:local_goal] > params[:visitor_goal] )then 
+          forecast.win = forecast.match.local.id
+        else
+          if (params[:local_goal] < params[:visitor_goal] )then
+            forecast.win = forecast.match.visitor.id
+          else
+            forecast.win = 0
+          end
+        end
+        forecast.save
+        flash[:success] = "Se cargo resultado del partido"
         redirect "/login/home"
       end
-    end
+  end
 
   get '/login/game' do
       @tournament = Matchtournament.where(tournament:params[:id_tournament])
@@ -143,13 +170,14 @@ class App < Sinatra::Application
       end
     end
 
-    hola = Forecast.find_by(user:forecast.user,match:forecast.match)
-    if (hola == nil )then
+    usuario = Forecast.find_by(user:forecast.user,match:forecast.match)
+    admin = Forecast.find_by(user:1,match:forecast.match)
+    if (usuario == nil && admin == nil)then
       forecast.save
       flash[:success] = "Se cargo pronostico"
       redirect "/login/home"
     else
-      flash[:error] = "Ya tienes un pronostico"
+      flash[:error] = "Ya tienes un pronostico o el partido ya finalizo"
       redirect "/login/home"
     end
   end
@@ -233,6 +261,7 @@ class App < Sinatra::Application
 
 
   get '/login/match' do
+    @match = Match.all
     @teams = Team.all
     erb:'Match/newM'
   end
@@ -277,7 +306,23 @@ class App < Sinatra::Application
     end
   end
 
+  post '/login/deletematch' do
+    borrar = Match.find_by(id:params[:match])
+    verificar = Matchtournament.find_by(match:params[:match])
+    if (borrar != nil && verificar == nil)then 
+      flash[:success] = "Partido borrado"
+      Match.destroy(borrar.id)
+      redirect "/login/match"
+    else
+      flash[:error] = "No se puede borrar, esta en un torneo"
+      redirect "/login/match"
+    end
+  end
+
   get '/' do
+    @todo = Matchtournament.all.order('tournament_id ASC')
+    @forecast = Forecast.all
+    @match = Match.all
     erb:index
   end
 
@@ -291,9 +336,9 @@ class App < Sinatra::Application
 
   get '/usuario' do
     if session[:user_id] == 1 then
-      erb :'Admin/Admin'
+      redirect to '/login/home'
     else
-      erb :'Usuario/usuario'
+      redirect to '/login/home'
     end
   end
 
@@ -318,12 +363,6 @@ class App < Sinatra::Application
       session[:user_id] = user.id
       redirect to '/usuario'
     end
-    #  if user.save then
-    #    session[:user_id] = user.id
-    #    redirect to '/usuario'
-    #  else
-    #    redirect to '/signup'
-    #  end
   end
 
 
@@ -341,19 +380,6 @@ class App < Sinatra::Application
       flash[:error] = "Username incorrecto."
       redirect '/login'
     end
-
-#     user = User.find_by(username: params['username'])
-#     if user     # if there is an user with that username
-#       user = user.authenticate params['password']
- #      if user   # and the password is correct
-#         session[:user_id] = user.id
-#         redirect '/usuario'
-#       else
-#        redirect '/login'
-#       end
-#     else
-#       redirect 'login'
-#     end
   end
 
   before do

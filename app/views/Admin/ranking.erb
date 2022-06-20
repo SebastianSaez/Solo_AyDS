@@ -120,8 +120,16 @@
             <th>ID</th><th>Nombre</th><th>Puntos</th>
           </tr>
         </thead>
+          <% @count = 1%>
           <% @user.each do |user| %>
-          <tr class="titulo"><th><%= "#{user.id}" %></th><th><%= "#{user.username}"%></th><th><%= "#{user.point}"%></th></tr> 
+          <%if (user.id != 1)%>
+            <%if (@count == 1)%>
+              <tr class="titulo"><th><%= "#{user.id}" %></th><th><%= "#{user.username}"%></th><th><%= "#{user.point}"%> ★</th></tr> 
+            <% else %>
+              <tr class="titulo"><th><%= "#{user.id}" %></th><th><%= "#{user.username}"%></th><th><%= "#{user.point}"%> </th></tr> 
+            <% end %>
+            <% @count = @count + 1%>
+          <% end %>
           <% end %>
       </table>
     </div>
